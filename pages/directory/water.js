@@ -19,7 +19,7 @@ export default function Water() {
 
     const fetchClickCount = async () => {
         try {
-            const response = await fetch('https://pj-back.onrender.com/click-count');
+            const response = await fetch('https://test3-1-bt3x.onrender.com/click-count');
             const data = await response.json();
             setClickCount(data.count);
         } catch (error) {
@@ -29,7 +29,7 @@ export default function Water() {
 
     const handleClick = async () => {
         try {
-            const response = await fetch('https://pj-back.onrender.com/increment-click', {
+            const response = await fetch('https://test3-1-bt3x.onrender.com/increment-click', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -48,7 +48,7 @@ export default function Water() {
 
     const fetchMessage = async () => {
         try {
-            const response = await fetch('https://pj-back.onrender.com');
+            const response = await fetch('https://test3-1-bt3x.onrender.com');
             const data = await response.text();
             setMessage(data);
         } catch (error) {
@@ -58,7 +58,7 @@ export default function Water() {
 
     const handleSubmit = async () => {
         try {
-            const response = await fetch('https://project-test-back.onrender.com/message', {
+            const response = await fetch('https://test3-1-bt3x.onrender.com/message', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
