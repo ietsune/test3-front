@@ -1,11 +1,8 @@
-
 import Link from 'next/link';
-import Header from '/components/Header.js'
+import Header from '/components/Header.js';
 import Image from 'next/image';
 import { motion } from "framer-motion";
 import css from "styled-jsx/css";
-
-//import styles from '/styles/Home.module.css';
 import { useState, useEffect } from 'react';
 
 export default function Water() {
@@ -13,10 +10,12 @@ export default function Water() {
     const [inputText, setInputText] = useState('');
     const [message, setMessage] = useState('');
 
+    // Fetch the click count when the component mounts
     useEffect(() => {
         fetchClickCount();
     }, []);
 
+    // Fetch click count from the server
     const fetchClickCount = async () => {
         try {
             const response = await fetch('https://test3-1-bt3x.onrender.com/click-count');
@@ -27,6 +26,7 @@ export default function Water() {
         }
     };
 
+    // Handle button click to increment click count on the server
     const handleClick = async () => {
         try {
             const response = await fetch('https://test3-1-bt3x.onrender.com/increment-click', {
@@ -42,10 +42,12 @@ export default function Water() {
         }
     };
 
+    // Fetch initial message when the component mounts
     useEffect(() => {
         fetchMessage();
     }, []);
 
+    // Fetch message from the server
     const fetchMessage = async () => {
         try {
             const response = await fetch('https://test3-1-bt3x.onrender.com');
@@ -56,6 +58,7 @@ export default function Water() {
         }
     };
 
+    // Handle form submission to send message to the server
     const handleSubmit = async () => {
         try {
             const response = await fetch('https://test3-1-bt3x.onrender.com/message', {
@@ -72,6 +75,7 @@ export default function Water() {
             console.error('Error:', error);
         }
     };
+
     return (
         <>
             <div className="font-sans mx-auto">
@@ -84,59 +88,50 @@ export default function Water() {
                         </h1>
 
                         <div className={`${className} wrapper`}>
-
-
-
-
                             <motion.button
                                 whileTap={{ scale: 1.3 }}
                                 className="w-[350px] h-[350px] rounded-full bg-[#3869b4] flex items-center justify-center"
                                 onClick={handleClick}
                             >
-
                                 <img
                                     src="/images/water.jpg"
                                     alt="funnel inside a round icon"
                                     className="w-[300px] h-[300px] rounded-full"
                                 />
-
-
                             </motion.button>
-
                         </div>
-
 
                         <h2 className="text-white text-2xl font-semibold mt-4 text-center">
                             ボタンが押された回数：{clickCount}
                         </h2>
                     </div>
                 </div>
-                <h1>Next.js + Flask</h1>
-                <input
-                    type="text"
-                    value={inputText}
-                    onChange={(e) => setInputText(e.target.value)}
-                    placeholder="Enter text"
-                />
-                <button onClick={handleSubmit}>Submit</button>
-                <h1 >
-                    <p>出力: {message}</p>
-                </h1>
-            </div>
 
+                <div className="flex flex-col items-center">
+                    <h1>Next.js + Flask</h1>
+                    <input
+                        type="text"
+                        value={inputText}
+                        onChange={(e) => setInputText(e.target.value)}
+                        placeholder="Enter text"
+                        className="border p-2"
+                    />
+                    <button onClick={handleSubmit} className="bg-blue-500 text-white p-2 mt-2">
+                        Submit
+                    </button>
+                    <h1 className="mt-4">
+                        <p>出力: {message}</p>
+                    </h1>
+                </div>
+            </div>
 
             {styles}
         </>
     );
 }
 
-
 const { className, styles } = css.resolve`
   .wrapper {
     margin: 100px;
   }
-  button {
-   
-  }
-
-  `;
+`;
